@@ -1,8 +1,10 @@
 package android.exercise.mini.interactions;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -21,6 +23,24 @@ public class EditTitleActivity extends AppCompatActivity {
   // `private boolean isEditing = false;`
   // in onCreate() set `this.isEditing` to `true` once the user starts editing, set to `false` once done editing
   // in onBackPressed() check `if(this.isEditing)` to understand what to do
+
+  public void showSoftKeyboard(View view)
+  {
+    if (view.requestFocus()) {
+      InputMethodManager imm = (InputMethodManager)
+              getSystemService(Context.INPUT_METHOD_SERVICE);
+      imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
+    }
+  }
+
+  private void closeKeyBoard(){
+    View view = this.findViewById(R.id.editTextPageTitle);
+    if (view != null){
+      InputMethodManager imm = (InputMethodManager)
+              getSystemService(Context.INPUT_METHOD_SERVICE);
+      imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +77,14 @@ public class EditTitleActivity extends AppCompatActivity {
        */
       fabStartEdit.setVisibility(View.GONE);
       fabEditDone.setVisibility(View.VISIBLE);
-     // textViewTitle.setText("Page title here");
+      // textViewTitle.setText("Page title here");
       textViewTitle.setVisibility(View.GONE);
 
       editTextTitle.setText("Page title here");
       editTextTitle.setVisibility(View.VISIBLE);
 
+      //6. - opens the keyboard with the edit- text focused
+      showSoftKeyboard(editTextTitle);
     });
 
     // handle clicks on "done edit"
@@ -82,12 +104,14 @@ public class EditTitleActivity extends AppCompatActivity {
       fabStartEdit.setVisibility(View.VISIBLE);
 
       // Saves the user's input
-      Editable inputText = editTextTitle.getText();
+      String inputText = editTextTitle.getText().toString();
       textViewTitle.setText(inputText);
 
       textViewTitle.setVisibility(View.VISIBLE);
       editTextTitle.setVisibility(View.GONE);
 
+      // closes the keyboard
+      closeKeyBoard();
     });
   }
 
