@@ -75,28 +75,21 @@
         />
 
     <EditText
-        android:cursorVisible="true"
-        android:textCursorDrawable="@null"
         android:id="@+id/editTextPageTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Page title here"
-        android:hint="Insert new title"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="@id/backgroundTopArea"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:textSize="24sp" />
-
-    <android.inputmethodservice.KeyboardView
-        android:layout_width="69dp"
-        android:layout_height="70dp"
-        android:visibility="visible"
-        app:layout_constraintTop_toTopOf="@id/editTextPageTitle"
-        android:id="@+id/keyBoard"
-        />
+        android:layout_marginBottom="16dp"
+        android:cursorVisible="true"
+        android:hint="Insert new title"
+        android:text="Page title here"
+        android:textAllCaps="false"
+        android:textCursorDrawable="@null"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@id/backgroundTopArea"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

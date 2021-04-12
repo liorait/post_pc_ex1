@@ -24,8 +24,8 @@ public class EditTitleActivity extends AppCompatActivity {
   // in onCreate() set `this.isEditing` to `true` once the user starts editing, set to `false` once done editing
   // in onBackPressed() check `if(this.isEditing)` to understand what to do
 
-  public void showSoftKeyboard(View view)
-  {
+  private boolean isEditing = false;
+  public void showSoftKeyboard(View view){
     if (view.requestFocus()) {
       InputMethodManager imm = (InputMethodManager)
               getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -75,8 +75,27 @@ public class EditTitleActivity extends AppCompatActivity {
 
       to complete (1.) & (2.), start by just changing visibility. only add animations after everything else is ready
        */
+
+      this.isEditing = true;
+
+      fabStartEdit.setAlpha(1f);
+
+      // animate out the start edit FAB
+      fabStartEdit.animate().alpha(0f).setDuration(200L).withEndAction(new Runnable() {
+        @Override
+        public void run() {
+          fabStartEdit.setVisibility(View.INVISIBLE);
+        }
+      }).start();
+
       fabStartEdit.setVisibility(View.GONE);
+
       fabEditDone.setVisibility(View.VISIBLE);
+      fabEditDone.setAlpha(0f);
+
+      // animate in the done edit FAB
+      fabEditDone.animate().alpha(1f).setDuration(200L).start();
+
       // textViewTitle.setText("Page title here");
       textViewTitle.setVisibility(View.GONE);
 
@@ -100,8 +119,22 @@ public class EditTitleActivity extends AppCompatActivity {
 
       to complete (1.) & (2.), start by just changing visibility. only add animations after everything else is ready
        */
+      this.isEditing= false;
+      fabEditDone.setAlpha(1f);
+      fabEditDone.animate().alpha(0f).setDuration(200L).withEndAction(new Runnable() {
+        @Override
+        public void run() {
+          fabEditDone.setVisibility(View.INVISIBLE);
+        }
+      }).start();
+
       fabEditDone.setVisibility(View.GONE);
       fabStartEdit.setVisibility(View.VISIBLE);
+
+      fabStartEdit.setAlpha(0f);
+
+      // animate in the start edit FAB
+      fabStartEdit.animate().alpha(1f).setDuration(200L).start();
 
       // Saves the user's input
       String inputText = editTextTitle.getText().toString();
