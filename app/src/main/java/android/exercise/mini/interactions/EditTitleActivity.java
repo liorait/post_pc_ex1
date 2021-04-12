@@ -81,12 +81,8 @@ public class EditTitleActivity extends AppCompatActivity {
       fabStartEdit.setAlpha(1f);
 
       // animate out the start edit FAB
-      fabStartEdit.animate().alpha(0f).setDuration(200L).withEndAction(new Runnable() {
-        @Override
-        public void run() {
-          fabStartEdit.setVisibility(View.INVISIBLE);
-        }
-      }).start();
+      fabStartEdit.animate().alpha(0f).setDuration(200L).withEndAction(()
+              -> fabStartEdit.setVisibility(View.INVISIBLE)).start();
 
       fabStartEdit.setVisibility(View.GONE);
 
@@ -121,12 +117,8 @@ public class EditTitleActivity extends AppCompatActivity {
        */
       this.isEditing = false;
       fabEditDone.setAlpha(1f);
-      fabEditDone.animate().alpha(0f).setDuration(200L).withEndAction(new Runnable() {
-        @Override
-        public void run() {
-          fabEditDone.setVisibility(View.INVISIBLE);
-        }
-      }).start();
+      fabEditDone.animate().alpha(0f).setDuration(200L).withEndAction(()
+              -> fabEditDone.setVisibility(View.INVISIBLE)).start();
 
       fabEditDone.setVisibility(View.GONE);
       fabStartEdit.setVisibility(View.VISIBLE);
@@ -181,12 +173,8 @@ public class EditTitleActivity extends AppCompatActivity {
 
       this.isEditing = false;
       fabEditDone.setAlpha(1f);
-      fabEditDone.animate().alpha(0f).setDuration(200L).withEndAction(new Runnable() {
-        @Override
-        public void run() {
-          fabEditDone.setVisibility(View.INVISIBLE);
-        }
-      }).start();
+      fabEditDone.animate().alpha(0f).setDuration(200L).withEndAction(()
+              -> fabEditDone.setVisibility(View.INVISIBLE)).start();
 
       fabEditDone.setVisibility(View.GONE);
       fabStartEdit.setVisibility(View.VISIBLE);
