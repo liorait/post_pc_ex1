@@ -1,6 +1,7 @@
 package android.exercise.mini.interactions;
 
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -54,6 +55,14 @@ public class EditTitleActivity extends AppCompatActivity {
 
       to complete (1.) & (2.), start by just changing visibility. only add animations after everything else is ready
        */
+      fabStartEdit.setVisibility(View.GONE);
+      fabEditDone.setVisibility(View.VISIBLE);
+     // textViewTitle.setText("Page title here");
+      textViewTitle.setVisibility(View.GONE);
+
+      editTextTitle.setText("Page title here");
+      editTextTitle.setVisibility(View.VISIBLE);
+
     });
 
     // handle clicks on "done edit"
@@ -69,6 +78,16 @@ public class EditTitleActivity extends AppCompatActivity {
 
       to complete (1.) & (2.), start by just changing visibility. only add animations after everything else is ready
        */
+      fabEditDone.setVisibility(View.GONE);
+      fabStartEdit.setVisibility(View.VISIBLE);
+
+      // Saves the user's input
+      Editable inputText = editTextTitle.getText();
+      textViewTitle.setText(inputText);
+
+      textViewTitle.setVisibility(View.VISIBLE);
+      editTextTitle.setVisibility(View.GONE);
+
     });
   }
 
